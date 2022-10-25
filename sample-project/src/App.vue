@@ -8,8 +8,7 @@
         <button type="submit">Submit</button>
     </form> -->
     <ul>
-        <user-info />
-        <user-info />
+        <user-info v-for="user in users" :key="user.key" :user-description="user" />
     </ul>
 </template>
 
