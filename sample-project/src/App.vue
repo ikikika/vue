@@ -8,7 +8,6 @@
 </template>
 
 <script>
-// import { computed } from 'vue';
 
 export default {
     data() {
@@ -33,11 +32,9 @@ export default {
     },
     provide() {
         return {
-            // usersProvided: computed(() => this.users),
             usersProvided: this.users,
             makeUserSpecial: this.toggleSpecialStatus,
             removeThisUser: this.deleteUser,
-            // message: computed(() => this.message)
         }
     },
     methods: {
@@ -54,20 +51,10 @@ export default {
             });
         },
         deleteUser(userId) {
-            console.log('userId: ' + userId);
-            this.users = this.users.filter(user => user.id === userId);
+            const userIndex = this.users.findIndex(user => user.id === userId);
+            this.users.splice(userIndex, 1);
         }
     },
-    mounted() {
-        setTimeout(() => {
-            this.users.push({
-                id: 1233,
-                name: "user3",
-                email: "user3@example.com",
-                isSpecial: true
-            });
-        }, 3000);
-    }
 };
 </script>
 
