@@ -8,7 +8,8 @@
         <button type="submit">Submit</button>
     </form> -->
     <ul>
-        <user-info v-for="user in users" :key="user.key" :user-description="user" />
+        <user-info v-for="user in users" :key="user.key" :user-description="user"
+            @toggle-special="toggleSpecialStatus" />
     </ul>
 </template>
 
@@ -24,16 +25,23 @@ export default {
                     id: 1231,
                     name: "user1",
                     email: "user1@example.com",
+                    isSpecial: false
                 },
                 {
                     id: 1232,
                     name: "user2",
                     email: "user2@example.com",
+                    isSpecial: true
+
                 },
             ],
         };
     },
     methods: {
+        toggleSpecialStatus(userId) {
+            const identifiedUser = this.users.find(user => user.id === userId);
+            identifiedUser.isSpecial = !identifiedUser.isSpecial;
+        },
         submitForm() {
             if (!this.inputName || !this.inputEmail) {
                 alert('please enter name and email');

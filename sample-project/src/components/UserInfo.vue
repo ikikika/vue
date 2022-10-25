@@ -1,6 +1,7 @@
 <template>
     <li>
-        <h2>{{ userDescription.name }}</h2>
+        <h2>{{ userDescription.name }} {{ userDescription.isSpecial ? '(Special)' : '' }}</h2>
+        <button @click="toggleSpecial">Toggle special</button>
         <button @click="toggleDetails">{{ detailsAreVisible ? 'Hide' : 'Show' }} Details</button>
         <ul v-if="detailsAreVisible">
             <li>{{ userDescription.email }}</li>
@@ -26,6 +27,9 @@ export default {
     methods: {
         toggleDetails() {
             this.detailsAreVisible = !this.detailsAreVisible;
+        },
+        toggleSpecial() {
+            this.$emit('toggle-special', this.userDescription.id);
         }
     }
 };
