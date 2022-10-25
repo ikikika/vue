@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+// import { computed } from 'vue';
 
 export default {
     data() {
@@ -34,10 +34,10 @@ export default {
     provide() {
         return {
             // usersProvided: computed(() => this.users),
-            // usersProvided: this.users,
+            usersProvided: this.users,
             makeUserSpecial: this.toggleSpecialStatus,
             removeThisUser: this.deleteUser,
-            message: computed(() => this.message)
+            // message: computed(() => this.message)
         }
     },
     methods: {
@@ -58,6 +58,16 @@ export default {
             this.users = this.users.filter(user => user.id === userId);
         }
     },
+    mounted() {
+        setTimeout(() => {
+            this.users.push({
+                id: 1233,
+                name: "user3",
+                email: "user3@example.com",
+                isSpecial: true
+            });
+        }, 3000);
+    }
 };
 </script>
 
