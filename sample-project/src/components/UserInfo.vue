@@ -6,7 +6,7 @@
         <ul v-if="detailsAreVisible">
             <li>{{ userDescription.email }}</li>
         </ul>
-
+        <button @click="deleteUser">Delete User</button>
     </li>
 </template>
 
@@ -20,7 +20,7 @@ export default {
             required: true
         }
     },
-    emits: ['toggle-special'],
+    emits: ['toggle-special', 'delete-user'],
     // emits: {
     //     'toggle-special': function (id) {
     //         if (id) {
@@ -42,6 +42,9 @@ export default {
         },
         toggleSpecial() {
             this.$emit('toggle-special', this.userDescription.id);
+        },
+        deleteUser() {
+            this.$emit('delete-user', this.userDescription.id)
         }
     }
 };

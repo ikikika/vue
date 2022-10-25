@@ -4,8 +4,8 @@
     </header>
     <new-user @add-contact="addUser" />
     <ul>
-        <user-info v-for="user in users" :key="user.key" :user-description="user"
-            @toggle-special="toggleSpecialStatus" />
+        <user-info v-for="user in users" :key="user.key" :user-description="user" @toggle-special="toggleSpecialStatus"
+            @delete-user="deleteUser" />
     </ul>
 </template>
 
@@ -44,6 +44,9 @@ export default {
                 email,
                 isSpecial: false
             });
+        },
+        deleteUser(userId) {
+            this.users = this.users.filter(user => user.id !== userId);
         }
     },
 };
