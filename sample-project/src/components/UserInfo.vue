@@ -1,8 +1,10 @@
 <template>
     <li>
         <h2>{{ user.name }}</h2>
-        <button @click="toggleDetails">Show Details</button>
-        <div v-if="detailsAreVisible">{{ user.email }}</div>
+        <button @click="toggleDetails">{{ detailsAreVisible ? 'Hide' : 'Show' }} Details</button>
+        <ul v-if="detailsAreVisible">
+            <li>{{ user.email }}</li>
+        </ul>
 
     </li>
 </template>
