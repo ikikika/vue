@@ -3,10 +3,7 @@
         <h1>{{ title }}</h1>
     </header>
     <new-user @add-contact="addUser" />
-    <ul>
-        <user-info v-for="user in users" :key="user.key" :user-description="user" @toggle-special="toggleSpecialStatus"
-            @delete-user="deleteUser" />
-    </ul>
+    <user-div :users="users" @toggle-special="toggleSpecialStatus" @delete-user="deleteUser" />
 </template>
 
 <script>
