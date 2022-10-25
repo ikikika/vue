@@ -1,13 +1,14 @@
 <template>
     <ul>
-        <user-info v-for="user in users" :key="user.key" :user-description="user"
-            @toggle-special="$emit('toggle-special', $event)" @delete-user="$emit('delete-user', $event)" />
+        <user-info v-for="user in usersProvided" :key="user.id" :user-description="user" />
     </ul>
+    <p v-for="m in message" :key="m">
+        {{ m }}
+    </p>
 </template>
 
 <script>
 export default {
-    inject: ["users"],
-    emits: ['toggle-special', 'delete-user'],
+    inject: ['usersProvided', 'message'],
 }
 </script>

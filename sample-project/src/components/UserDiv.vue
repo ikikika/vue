@@ -1,11 +1,9 @@
 <template>
     <div>
-        <user-container @toggle-special="$emit('toggle-special', $event)" @delete-user="$emit('delete-user', $event)" />
+        <user-container />
     </div>
 </template>
 
 <script>
-export default {
-    emits: ['toggle-special', 'delete-user'],
-}
+export default {}
 </script>

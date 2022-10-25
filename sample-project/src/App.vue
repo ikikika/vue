@@ -1,12 +1,15 @@
 <template>
     <header>
-        <h1>{{ title }}</h1>
+        <h1>{{ users.length }} {{ title }}</h1>
     </header>
     <new-user @add-contact="addUser" />
-    <user-div :users="users" @toggle-special="toggleSpecialStatus" @delete-user="deleteUser" />
+    <div v-if="users.length === 0">No users</div>
+    <user-div v-else @toggle-special="toggleSpecialStatus" @delete-user="deleteUser" />
 </template>
 
 <script>
+import { computed } from 'vue';
+
 export default {
     data() {
         return {
@@ -23,14 +26,18 @@ export default {
                     name: "user2",
                     email: "user2@example.com",
                     isSpecial: true
-
                 },
             ],
+            message: ['hello', 'you']
         };
     },
     provide() {
         return {
-            users: this.users
+            // usersProvided: computed(() => this.users),
+            // usersProvided: this.users,
+            makeUserSpecial: this.toggleSpecialStatus,
+            removeThisUser: this.deleteUser,
+            message: computed(() => this.message)
         }
     },
     methods: {
@@ -39,7 +46,6 @@ export default {
             identifiedUser.isSpecial = !identifiedUser.isSpecial;
         },
         addUser(name, email) {
-            console.log(name, email);
             this.users.push({
                 id: new Date().getTime(),
                 name,
@@ -48,7 +54,8 @@ export default {
             });
         },
         deleteUser(userId) {
-            this.users = this.users.filter(user => user.id !== userId);
+            console.log('userId: ' + userId);
+            this.users = this.users.filter(user => user.id === userId);
         }
     },
 };
