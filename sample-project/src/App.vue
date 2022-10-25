@@ -6,7 +6,7 @@
         <button type="submit">Submit</button>
     </form>
     <ul>
-        <li v-for="user in users" :key="user.id">{{ user.name }}</li>
+        <user-info />
     </ul>
 </template>
 
