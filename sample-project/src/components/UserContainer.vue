@@ -7,7 +7,7 @@
 
 <script>
 export default {
-    props: ["users"],
+    inject: ["users"],
     emits: ['toggle-special', 'delete-user'],
 }
 </script>

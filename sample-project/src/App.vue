@@ -28,6 +28,11 @@ export default {
             ],
         };
     },
+    provide() {
+        return {
+            users: this.users
+        }
+    },
     methods: {
         toggleSpecialStatus(userId) {
             const identifiedUser = this.users.find(user => user.id === userId);
