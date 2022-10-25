@@ -19,6 +19,17 @@ export default {
             required: true
         }
     },
+    emits: ['toggle-special'],
+    // emits: {
+    //     'toggle-special': function (id) {
+    //         if (id) {
+    //             return true;
+    //         } else {
+    //             console.log('Id is missing');
+    //             return false;
+    //         }
+    //     }
+    // },
     data() {
         return {
             detailsAreVisible: false,
