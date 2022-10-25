@@ -2,11 +2,7 @@
     <header>
         <h1>{{ title }}</h1>
     </header>
-    <!-- <form @submit.prevent="submitForm">
-        <input placeholder="name" v-model="inputName" />
-        <input placeholder="email" v-model="inputEmail" />
-        <button type="submit">Submit</button>
-    </form> -->
+    <new-user @add-contact="addUser" />
     <ul>
         <user-info v-for="user in users" :key="user.key" :user-description="user"
             @toggle-special="toggleSpecialStatus" />
@@ -18,8 +14,6 @@ export default {
     data() {
         return {
             title: "Users",
-            inputName: "",
-            inputEmail: "",
             users: [
                 {
                     id: 1231,
@@ -42,19 +36,14 @@ export default {
             const identifiedUser = this.users.find(user => user.id === userId);
             identifiedUser.isSpecial = !identifiedUser.isSpecial;
         },
-        submitForm() {
-            if (!this.inputName || !this.inputEmail) {
-                alert('please enter name and email');
-                return;
-            }
-            const date = new Date();
+        addUser(name, email) {
+            console.log(name, email);
             this.users.push({
-                id: date.getTime(),
-                name: this.inputName,
-                email: this.inputEmail
+                id: new Date().getTime(),
+                name,
+                email,
+                isSpecial: false
             });
-            this.inputName = '';
-            this.inputEmail = '';
         }
     },
 };
@@ -93,7 +82,8 @@ header {
     list-style: none;
 }
 
-#app li {
+#app li,
+#app form {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     margin: 1rem auto;
     border-radius: 10px;
@@ -125,5 +115,21 @@ header {
     background-color: #ec3169;
     border-color: #ec3169;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
+}
+
+#app input {
+    font: inherit;
+    padding: 0.15rem;
+}
+
+#app label {
+    font-weight: bold;
+    margin-right: 1rem;
+    width: 7rem;
+    display: inline-block;
+}
+
+#app form div {
+    margin: 1rem 0;
 }
 </style>
