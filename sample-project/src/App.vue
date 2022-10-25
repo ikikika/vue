@@ -9,7 +9,13 @@
 
 <script>
 
+import UserDiv from "./components/UserDiv.vue"
+import NewUser from "./components/NewUser.vue";
+
 export default {
+    components: {
+        UserDiv, NewUser
+    },
     data() {
         return {
             title: "Users",

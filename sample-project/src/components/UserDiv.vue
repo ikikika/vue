@@ -5,5 +5,9 @@
 </template>
 
 <script>
-export default {}
+import UserContainer from './UserContainer.vue';
+
+export default {
+    components: { UserContainer }
+}
 </script>

@@ -6,7 +6,12 @@
 </template>
 
 <script>
+import UserInfo from "./UserInfo.vue"
+
 export default {
+    components: {
+        UserInfo
+    },
     inject: ['usersProvided'],
 }
 </script>
