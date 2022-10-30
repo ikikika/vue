@@ -1,5 +1,6 @@
 <template>
   <section>
+    <button @click="backButton">Back</button>
     <h2>{{ teamName }}</h2>
     <ul>
       <user-item v-for="member in members" :key="member.id" :name="member.fullName" :role="member.role"></user-item>
@@ -20,6 +21,12 @@ export default {
       teamName: '',
       members: []
     };
+  },
+  methods: {
+    backButton() {
+      this.$router.back();
+      // this.$router.push('/teams');
+    }
   },
   created() {
     const teamId = this.$route.params.teamId;
