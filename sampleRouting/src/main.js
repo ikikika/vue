@@ -5,6 +5,8 @@ import App from './App.vue';
 import TeamsList from './components/teams/TeamsList';
 import UsersList from './components/users/UsersList';
 import TeamMembers from './components/teams/TeamMembers';
+import TeamsFooter from './components/teams/TeamsFooter';
+import UsersFooter from './components/users/UsersFooter';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -16,7 +18,7 @@ const router = createRouter({
     {
       name: 'teams',
       path: '/teams',
-      component: TeamsList,
+      components: { default: TeamsList, footer: TeamsFooter },
       //   alias: '/',
       children: [
         {
@@ -29,7 +31,7 @@ const router = createRouter({
     },
     {
       path: '/users',
-      component: UsersList,
+      components: { default: UsersList, footer: UsersFooter },
     },
     // {
     //   path: '/teams/:teamId',
