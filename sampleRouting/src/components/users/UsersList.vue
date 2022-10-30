@@ -12,6 +12,9 @@ export default {
     UserItem,
   },
   inject: ['users'],
+  // beforeRouteEnter(_to, _from, next) {
+  //   // vue will call this method before rendering the component
+  // }
 };
 </script>
 

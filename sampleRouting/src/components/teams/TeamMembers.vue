@@ -45,6 +45,9 @@ export default {
     this.loadTeamMembers(this.teamId);
     console.log(this.$route.query);
   },
+  //   beforeRouteUpdate(to, from, next){
+  // // vue will call this method before the route change if this compoent is to be reused
+  //   }
   watch: {
     teamId(newId) {
       this.loadTeamMembers(newId);

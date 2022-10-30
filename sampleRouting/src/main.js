@@ -32,6 +32,9 @@ const router = createRouter({
     {
       path: '/users',
       components: { default: UsersList, footer: UsersFooter },
+      //   beforeEnter(_to, _from, next) {
+      // guard can be defined here
+      //   },
     },
     // {
     //   path: '/teams/:teamId',
@@ -44,15 +47,19 @@ const router = createRouter({
     },
   ],
   linkActiveClass: 'active',
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior(_to, _from, savedPosition) {
     // to - going to
     // from - coming from
-    console.log(to, from, savedPosition);
     if (savedPosition) {
       return savedPosition;
     }
     return { left: 0, top: 0 };
   },
+});
+
+router.beforeEach(function (to, from, next) {
+  console.log(to, from);
+  next();
 });
 
 const app = createApp(App);
