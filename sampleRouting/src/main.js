@@ -14,11 +14,13 @@ const router = createRouter({
       redirect: '/teams',
     },
     {
+      name: 'teams',
       path: '/teams',
       component: TeamsList,
       //   alias: '/',
       children: [
         {
+          name: 'team-members',
           path: ':teamId',
           component: TeamMembers,
           props: true,
