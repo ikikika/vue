@@ -5,6 +5,15 @@
   </div>
 
   <div class="container">
+    <transition name="para" @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter"
+      @before-leave="beforeLeave" @leave="leave" @after-leave="afterLeave" @enter-cancelled="enterCancelled"
+      @leave-cancelled="leaveCancelled">
+      <p v-if="paraIsVisible">Sometimes visible</p>
+    </transition>
+    <button @click="toggleParagraph">Toggle Paragraph</button>
+  </div>
+
+  <div class="container">
     <transition name="fade-button" mode="out-in">
       <button @click="showUsers" v-if="!usersAreVisible">Show Users</button>
       <button @click="hideUsers" v-else>Hide Users</button>
@@ -24,9 +33,50 @@
 <script>
 export default {
   data() {
-    return { animatedBlock: false, dialogIsVisible: false, usersAreVisible: false };
+    return { animatedBlock: false, dialogIsVisible: false, usersAreVisible: false, paraIsVisible: false, enterInterval: null, leaveInterval: null };
   },
   methods: {
+    enterCancelled() {
+      clearInterval(this.enterInterval);
+    },
+    leaveCancelled() {
+      clearInterval(this.leaveInterval);
+    },
+    beforeEnter(el) {
+      el.style.opacity = 0;
+    },
+    enter(el, done) {
+      let round = 1
+      this.enterInterval = setInterval(() => {
+        el.style.opacity = round * 0.01;
+        round++;
+        if (round > 100) {
+          clearInterval(this.enterInterval);
+          done();
+        }
+      }, 20);
+    },
+    afterEnter() { },
+    beforeLeave(el) {
+      console.log('before leave');
+      el.style.opacity = 1;
+    },
+    leave(el, done) {
+      console.log('leave');
+      let round = 1
+      this.leaveInterval = setInterval(() => {
+        el.style.opacity = 1 - round * 0.01;
+        round++;
+        if (round > 100) {
+          clearInterval(this.leaveInterval);
+          done();
+        }
+      }, 20);
+    },
+    afterLeave() { },
+    toggleParagraph() {
+      this.paraIsVisible = !this.paraIsVisible;
+    },
     animateBlock() {
       this.animatedBlock = true;
     },
