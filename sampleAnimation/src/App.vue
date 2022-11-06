@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <!-- <div class="container">
     <users-list />
   </div>
 
@@ -31,15 +31,16 @@
 
   <div class="container">
     <button @click="showDialog">Show Dialog</button>
-  </div>
+  </div> -->
+  <router-view />
 </template>  
 
 <script>
-import UsersList from "./components/UsersList.vue";
+// import UsersList from "./components/UsersList.vue";
 export default {
-  components: {
-    UsersList
-  },
+  // components: {
+  //   UsersList
+  // },
   data() {
     return {
       animatedBlock: false,
