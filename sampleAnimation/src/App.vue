@@ -5,7 +5,7 @@
   </div>
 
   <div class="container">
-    <transition name="para" @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter"
+    <transition :css="false" @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter"
       @before-leave="beforeLeave" @leave="leave" @after-leave="afterLeave" @enter-cancelled="enterCancelled"
       @leave-cancelled="leaveCancelled">
       <p v-if="paraIsVisible">Sometimes visible</p>
@@ -33,7 +33,14 @@
 <script>
 export default {
   data() {
-    return { animatedBlock: false, dialogIsVisible: false, usersAreVisible: false, paraIsVisible: false, enterInterval: null, leaveInterval: null };
+    return {
+      animatedBlock: false,
+      dialogIsVisible: false,
+      usersAreVisible: false,
+      paraIsVisible: false,
+      enterInterval: null,
+      leaveInterval: null
+    };
   },
   methods: {
     enterCancelled() {
