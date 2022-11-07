@@ -4,6 +4,7 @@ import { createStore } from 'vuex';
 import App from './App.vue';
 
 const counterModule = {
+  namespaced: true, // detach this module from the rest of the store.
   state() {
     return {
       counter: 0,

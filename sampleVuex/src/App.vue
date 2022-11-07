@@ -29,14 +29,14 @@ export default {
     // counter() {
     //   return this.$store.getters.finalCounter;
     // }
-    ...mapGetters(['finalCounter']),
+    ...mapGetters('numbers', ['finalCounter']),
     isAuth() {
       return this.$store.getters.userIsAuthenticated;
     }
   },
   methods: {
     addOne() {
-      this.$store.dispatch('increase', { value: 2 });
+      this.$store.dispatch('numbers/increase', { value: 2 });
     }
   }
 };
