@@ -17,6 +17,15 @@ const store = createStore({
       state.counter = state.counter + payload.value;
     },
   },
+  actions: {
+    // actions can run async code, mutations cannot
+    // dun update state in actions. update state in mutations
+    increase(context, payload) {
+      setTimeout(function () {
+        context.commit('increment', payload);
+      }, 2000);
+    },
+  },
   getters: {
     finalCounter(state) {
       return state.counter.toFixed(2);
