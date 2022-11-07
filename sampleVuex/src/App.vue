@@ -1,6 +1,6 @@
 <template>
   <base-container title="Vuex">
-    <h3>{{ counter }}</h3>
+    <h3>{{ finalCounter }}</h3>
     <favourite-value />
     <button @click="addOne">Add 2</button>
     <change-counter />
@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import BaseContainer from './components/BaseContainer.vue';
 import ChangeCounter from './components/ChangeCounter.vue';
 import FavouriteValue from './components/FavouriteValue.vue';
@@ -19,9 +20,10 @@ export default {
     FavouriteValue
   },
   computed: {
-    counter() {
-      return this.$store.getters.finalCounter;
-    }
+    // counter() {
+    //   return this.$store.getters.finalCounter;
+    // }
+    ...mapGetters(['finalCounter'])
   },
   methods: {
     addOne() {

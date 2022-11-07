@@ -20,9 +20,12 @@ const store = createStore({
   actions: {
     // actions can run async code, mutations cannot
     // dun update state in actions. update state in mutations
+    increment(context) {
+      context.commit('increment');
+    },
     increase(context, payload) {
       setTimeout(function () {
-        context.commit('increment', payload);
+        context.commit('increase', payload);
       }, 2000);
     },
   },
