@@ -1,6 +1,6 @@
 <template>
     <base-dialog :show="!!error" title="An error occurred!" @close="handleError">
-      <p>{{ error }}</p>
+        <p>{{ error }}</p>
     </base-dialog>
     <section>
         <coach-filter @change-filter="setFilters"></coach-filter>
@@ -8,7 +8,7 @@
     <section>
         <base-card>
             <div class="controls">
-                <base-button mode="outline" @click="loadCoaches">Refresh</base-button>
+                <base-button mode="outline" @click="loadCoaches(true)">Refresh</base-button>
                 <base-button v-if="!isCoach && !isLoading" link to="/register">Register as Coach</base-button>
             </div>
             <div v-if="isLoading">
@@ -71,7 +71,7 @@ export default {
         setFilters(updatedFilters) {
             this.activeFilters = updatedFilters;
         },
-        async loadCoaches(refresh = false) {
+        async loadCoaches(refresh = false) { // force refresh payload
             this.isLoading = true;
             try {
                 await this.$store.dispatch('coaches/loadCoaches', {
