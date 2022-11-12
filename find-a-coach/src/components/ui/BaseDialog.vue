@@ -2,6 +2,7 @@
   <teleport to="body">
     <div v-if="show" @click="tryClose" class="backdrop"></div>
     <transition name="dialog">
+      <!-- animate -->
       <dialog open v-if="show">
         <header>
           <slot name="header">
@@ -98,6 +99,7 @@ menu {
   margin: 0;
 }
 
+/* animate */
 .dialog-enter-from,
 .dialog-leave-to {
   opacity: 0;
@@ -117,6 +119,8 @@ menu {
   opacity: 1;
   transform: scale(1);
 }
+
+/* end animate */
 
 @media (min-width: 768px) {
   dialog {
