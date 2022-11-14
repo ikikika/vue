@@ -1,6 +1,6 @@
 <template>
-    <!-- only 1 child element for transition to work-->
     <div>
+        <!-- only 1 child element for transition to work-->
         <base-dialog :show="!!error" title="An error occurred!" @close="handleError">
             <p>{{ error }}</p>
         </base-dialog>

@@ -4,6 +4,7 @@ var fs = require('fs');
 // Create a server object
 http
   .createServer(function (req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.writeHead(200, { 'Content-Type': 'text/html' });
 
     var url = req.url;
@@ -19,7 +20,7 @@ http
 
           req.on('data', function (chunk) {
             var receivedData = JSON.parse(chunk);
-            receivedData.id = Date.now();
+            receivedData.id = 'c' + Date.now();
             coachData.push(receivedData);
 
             fs.writeFile(

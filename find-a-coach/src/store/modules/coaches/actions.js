@@ -9,8 +9,8 @@ export default {
       areas: data.areas,
     };
 
-    const response = await fetch(`url/${userId}`, {
-      method: 'PUT',
+    const response = await fetch(process.env.VUE_APP_API_URL + '/coaches', {
+      method: 'POST',
       body: JSON.stringify(coachData),
     });
 
@@ -22,7 +22,7 @@ export default {
 
     context.commit('registerCoach', {
       ...coachData,
-      id: userId,
+      id: context.rootGetters.userId,
     });
   },
   async loadCoaches(context, payload) {
@@ -30,7 +30,7 @@ export default {
       return;
     }
 
-    const response = await fetch(`url`);
+    const response = await fetch(process.env.VUE_APP_API_URL + '/coaches');
     const responseData = await response.json();
 
     if (!response.ok) {
@@ -42,7 +42,7 @@ export default {
 
     for (const key in responseData) {
       const coach = {
-        id: key,
+        id: responseData[key].id,
         firstName: responseData[key].firstName,
         lastName: responseData[key].lastName,
         description: responseData[key].description,

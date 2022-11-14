@@ -1,6 +1,6 @@
 <template>
-    <!-- only 1 child element for transition to work-->
     <div>
+        <!-- only 1 child element for transition to work-->
         <section>
             <base-card>
                 <h2>Register as a coach now!</h2>

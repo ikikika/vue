@@ -1,6 +1,6 @@
 <template>
-    <!-- only 1 child element for transition to work-->
     <div>
+        <!-- only 1 child element for transition to work-->
         <section>
             <base-card>
                 <h2>{{ fullName }}</h2>
@@ -51,9 +51,7 @@ export default {
         }
     },
     created() {
-        console.log(this.id);
         this.selectedCoach = this.$store.getters['coaches/coaches'].find(coach => coach.id === this.id);
-
     },
 }
 </script>
