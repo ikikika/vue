@@ -33,9 +33,25 @@ http
           });
         });
       }
-    } else if (url === '/contact') {
-      res.write(' Welcome to contact us page');
-      res.end();
+    } else if (url === '/login') {
+      fs.readFile('./users.json', (err, data) => {
+        var userData = JSON.parse(data);
+
+        req.on('data', function (chunk) {
+          var receivedData = JSON.parse(chunk);
+
+          userData.find((user) => {
+            if (
+              user.username === receivedData.username &&
+              user.password === receivedData.password
+            ) {
+              res.end(JSON.stringify({ token: user.id }));
+            } else {
+              res.end('no user');
+            }
+          });
+        });
+      });
     } else {
       res.write('Hello World!');
       res.end();
