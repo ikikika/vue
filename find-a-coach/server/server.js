@@ -61,7 +61,12 @@ http
           );
 
           if (userExist) {
-            res.end(JSON.stringify({ token: userExist.id }));
+            res.end(
+              JSON.stringify({
+                idToken: userExist.id,
+                localId: userExist.email,
+              })
+            );
           } else {
             res.end(
               JSON.stringify(
@@ -108,6 +113,7 @@ http
                     JSON.stringify(
                       {
                         token: receivedData.id,
+                        localId: receivedData.email,
                       },
                       null,
                       3

@@ -23,23 +23,13 @@
         "hourlyRate": 30
     },
     {
-        "id": "c1668392415880",
-        "firstName": "qqq",
-        "lastName": "www",
-        "description": "eee",
-        "hourlyRate": 4,
+        "id": "c1668541201869",
+        "firstName": "vvv",
+        "lastName": "vvv",
+        "description": "vvv",
+        "hourlyRate": 33,
         "areas": [
             "frontend"
         ]
-    },
-    {
-        "firstName": "qqqqq",
-        "lastName": "wwwww",
-        "areas": [
-            "career"
-        ],
-        "description": "eeeee",
-        "hourlyRate": 30,
-        "id": "c1668540273700"
     }
 ]
