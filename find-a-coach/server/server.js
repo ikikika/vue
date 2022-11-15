@@ -40,16 +40,25 @@ http
         req.on('data', function (chunk) {
           var receivedData = JSON.parse(chunk);
 
-          userData.find((user) => {
-            if (
-              user.username === receivedData.username &&
+          var userExist = userData.find(
+            (user) =>
+              user.email === receivedData.email &&
               user.password === receivedData.password
-            ) {
-              res.end(JSON.stringify({ token: user.id }));
-            } else {
-              res.end('no user');
-            }
-          });
+          );
+
+          if (userExist) {
+            res.end(JSON.stringify({ token: userExist.id }));
+          } else {
+            res.end(
+              JSON.stringify(
+                {
+                  error: true,
+                },
+                null,
+                3
+              )
+            );
+          }
         });
       });
     } else if (url === '/signup') {
