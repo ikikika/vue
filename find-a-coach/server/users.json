@@ -1,12 +1,7 @@
 [
     {
-        "id": "token1",
-        "username": "aaaaaa",
-        "password": "aaaaaa"
-    },
-    {
-        "id": "token2",
-        "username": "aaaaaa1",
-        "password": "aaaaaa1"
+        "email": "aaaaaa",
+        "password": "aaaaaa",
+        "id": "token1668538493645"
     }
 ]

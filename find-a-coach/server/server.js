@@ -52,6 +52,50 @@ http
           });
         });
       });
+    } else if (url === '/signup') {
+      if (req.method == 'POST') {
+        fs.readFile('./users.json', (err, data) => {
+          var userData = JSON.parse(data);
+
+          req.on('data', function (chunk) {
+            var receivedData = JSON.parse(chunk);
+            var userExist = userData.find(
+              (user) => user.email === receivedData.email
+            );
+
+            if (userExist) {
+              res.end(
+                JSON.stringify(
+                  {
+                    error: true,
+                  },
+                  null,
+                  3
+                )
+              );
+            } else {
+              receivedData.id = 'token' + Date.now();
+              userData.push(receivedData);
+
+              fs.writeFile(
+                './users.json',
+                JSON.stringify(userData),
+                function () {
+                  res.end(
+                    JSON.stringify(
+                      {
+                        token: receivedData.id,
+                      },
+                      null,
+                      3
+                    )
+                  );
+                }
+              );
+            }
+          });
+        });
+      }
     } else {
       res.write('Hello World!');
       res.end();
