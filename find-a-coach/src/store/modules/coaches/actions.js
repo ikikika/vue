@@ -1,5 +1,7 @@
 export default {
   async registerCoach(context, data) {
+    const token = context.rootGetters.token;
+
     const coachData = {
       id: context.rootGetters.userId,
       firstName: data.first,
@@ -7,6 +9,7 @@ export default {
       description: data.desc,
       hourlyRate: data.rate,
       areas: data.areas,
+      token,
     };
 
     const response = await fetch(process.env.VUE_APP_API_URL + '/coaches', {

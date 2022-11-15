@@ -31,5 +31,15 @@
         "areas": [
             "frontend"
         ]
+    },
+    {
+        "firstName": "qqqqq",
+        "lastName": "wwwww",
+        "areas": [
+            "career"
+        ],
+        "description": "eeeee",
+        "hourlyRate": 30,
+        "id": "c1668540273700"
     }
 ]

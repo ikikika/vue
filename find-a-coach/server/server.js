@@ -20,16 +20,30 @@ http
 
           req.on('data', function (chunk) {
             var receivedData = JSON.parse(chunk);
-            receivedData.id = 'c' + Date.now();
-            coachData.push(receivedData);
 
-            fs.writeFile(
-              './coaches.json',
-              JSON.stringify(coachData),
-              function () {
-                res.end('ok');
-              }
-            );
+            if (receivedData.token === '' || !receivedData.token) {
+              res.end(
+                JSON.stringify(
+                  {
+                    error: true,
+                  },
+                  null,
+                  3
+                )
+              );
+            } else {
+              receivedData.id = 'c' + Date.now();
+              delete receivedData.token;
+              coachData.push(receivedData);
+
+              fs.writeFile(
+                './coaches.json',
+                JSON.stringify(coachData),
+                function () {
+                  res.end('ok');
+                }
+              );
+            }
           });
         });
       }
