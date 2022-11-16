@@ -49,4 +49,10 @@ export default {
       userId: responseData.localId,
     });
   },
+  logout(context) {
+    context.commit('setUser', {
+      token: null,
+      userId: null,
+    });
+  },
 };
