@@ -1,6 +1,25 @@
 export default {
   async login(context, payload) {
-    const response = await fetch(process.env.VUE_APP_API_URL + '/login', {
+    return context.dispatch('auth', {
+      ...payload,
+      mode: 'login',
+    });
+  },
+  async signup(context, payload) {
+    return context.dispatch('auth', {
+      ...payload,
+      mode: 'signup',
+    });
+  },
+
+  async auth(context, payload) {
+    const mode = payload.mode;
+    let url = process.env.VUE_APP_API_URL + '/login';
+
+    if (mode === 'signup') {
+      url = process.env.VUE_APP_API_URL + '/signup';
+    }
+    const response = await fetch(url, {
       method: 'POST',
       body: JSON.stringify({
         email: payload.email,
@@ -17,37 +36,24 @@ export default {
       throw error;
     }
 
-    console.log(responseData);
+    localStorage.setItem('token', responseData.idToken);
+    localStorage.setItem('userId', responseData.localId);
 
     context.commit('setUser', {
       token: responseData.idToken,
       userId: responseData.localId,
     });
   },
-  async signup(context, payload) {
-    const response = await fetch(process.env.VUE_APP_API_URL + '/signup', {
-      method: 'POST',
-      body: JSON.stringify({
-        email: payload.email,
-        password: payload.password,
-      }),
-    });
+  tryLogin(context) {
+    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('userId');
 
-    const responseData = await response.json();
-
-    if (!response.ok || responseData.error) {
-      const error = new Error(
-        responseData.message || 'Failed to authenticate. Check your login data.'
-      );
-      throw error;
+    if (token && userId) {
+      context.commit('setUser', {
+        token: token,
+        userId: userId,
+      });
     }
-
-    console.log(responseData);
-
-    context.commit('setUser', {
-      token: responseData.idToken,
-      userId: responseData.localId,
-    });
   },
   logout(context) {
     context.commit('setUser', {
