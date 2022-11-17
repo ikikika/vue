@@ -12,6 +12,10 @@ export default {
   setup() {
     const uName = ref('Sample');
 
+    setTimeout(function () {
+      uName.value = 'new value';
+    }, 2000);
+
     return { userName: uName };
   }
 
