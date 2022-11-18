@@ -1,7 +1,7 @@
 <template>
   <section class="container">
     <h2>{{ uName }}</h2>
-    <h2>{{ user.age }}</h2>
+    <h2>{{ uAge }}</h2>
     <button @click="setAge">Set age</button>
     <div>
       <input type="text" placeholder="First Name" v-model="firstName" />
@@ -11,17 +11,16 @@
 </template>
 
 <script>
-import {
-  reactive,
-  ref, computed
-} from 'vue';
+import { reactive, ref, computed, watch } from 'vue';
 
 export default {
   setup() {
     const user = reactive({ name: 'Maximilian', age: 31 });
+    const uAge = ref(0)
 
     function setNewAge() {
       user.age = 32;
+      uAge.value++;
     }
 
     const firstName = ref('fn');
@@ -39,6 +38,14 @@ export default {
       return firstName.value + ' ' + lastName.value;
     });
 
+
+    watch(uAge, function (newValue, oldValue) {
+      // whenever uAge changes, this function runs  
+      // pass array for multiple dependency
+      console.log('newValue', newValue);
+      console.log('oldValue', oldValue);
+    });
+
     return {
       user,
       setAge: setNewAge,
@@ -46,7 +53,8 @@ export default {
       setFirstName,
       setLastName,
       firstName,
-      lastName
+      lastName,
+      uAge
     }
   }
 }
