@@ -5,16 +5,22 @@
   </section>
 </template>
 
-<script setup>
-import { ref } from 'vue';
+<script>
+import { reactive } from 'vue';
 
-const user = ref({ name: 'Maximilian', age: 31 });
+export default {
+  setup() {
+    const user = reactive({ name: 'Maximilian', age: 31 });
 
+    setTimeout(function () {
+      user.name = 'Max';
+      user.age = 30;
+    }, 2000);
 
-setTimeout(function () {
-  user.value.name = 'Max';
-  user.value.age = 30;
-}, 2000);
+    return { user }
+  }
+}
+
 </script>
 
 <style>
