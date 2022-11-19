@@ -60,11 +60,16 @@ export default {
       });
     });
 
+    function sort(mode) {
+      sorting.value = mode;
+    }
+
     return {
       enteredSearchTerm,
       displayedUsers,
       sorting,
-      updateSearch
+      updateSearch,
+      sort
     };
   },
   // data() {
@@ -107,9 +112,9 @@ export default {
     // updateSearch(val) {
     //   this.enteredSearchTerm = val;
     // },
-    sort(mode) {
-      this.sorting = mode;
-    },
+    // sort(mode) {
+    //   this.sorting = mode;
+    // },
   },
   watch: {
     enteredSearchTerm(val) {
