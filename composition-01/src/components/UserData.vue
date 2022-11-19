@@ -4,10 +4,10 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, inject } from 'vue';
 
 export default {
-    props: ['firstName', 'lastName', 'age'],
+    props: ['firstName', 'lastName'],
     setup(
         props,
         // context
@@ -18,7 +18,9 @@ export default {
 
         // context.emit('save-data', 1); // this.emit('save-data', 1)
 
-        return { userName: uName }
+        const age = inject('userAge'); // dun change injected values here. only change them at the place where they are provided
+
+        return { userName: uName, age }
     }
 }
 </script>
