@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+
 import ProjectItem from './ProjectItem.vue';
 
 export default {
@@ -20,12 +22,21 @@ export default {
     ProjectItem,
   },
   props: ['user'],
-  data() {
+  setup(props) {
+    const enteredSearchTerm = ref('');
+    const activeSearchTerm = ref('');
+
     return {
-      enteredSearchTerm: '',
-      activeSearchTerm: '',
+      enteredSearchTerm,
     };
+
   },
+  // data() {
+  //   return {
+  //     enteredSearchTerm: '',
+  //     activeSearchTerm: '',
+  //   };
+  // },
   computed: {
     hasProjects() {
       return this.user.projects && this.availableProjects.length > 0;
