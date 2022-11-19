@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import UserItem from './UserItem.vue';
 
 export default {
@@ -36,6 +36,14 @@ export default {
         users = props.users;
       }
       return users;
+    });
+
+    watch(enteredSearchTerm, function (newValue) {
+      setTimeout(() => {
+        if (newValue === enteredSearchTerm.value) {
+          activeSearchTerm.value = newValue;
+        }
+      }, 300);
     });
 
     function updateSearch(val) {
@@ -108,23 +116,23 @@ export default {
   //   });
   // },
   // },
-  methods: {
-    // updateSearch(val) {
-    //   this.enteredSearchTerm = val;
-    // },
-    // sort(mode) {
-    //   this.sorting = mode;
-    // },
-  },
-  watch: {
-    enteredSearchTerm(val) {
-      setTimeout(() => {
-        if (val === this.enteredSearchTerm) {
-          this.activeSearchTerm = val;
-        }
-      }, 300);
-    }
-  },
+  // methods: {
+  // updateSearch(val) {
+  //   this.enteredSearchTerm = val;
+  // },
+  // sort(mode) {
+  //   this.sorting = mode;
+  // },
+  // },
+  // watch: {
+  //   enteredSearchTerm(val) {
+  //     setTimeout(() => {
+  //       if (val === this.enteredSearchTerm) {
+  //         this.activeSearchTerm = val;
+  //       }
+  //     }, 300);
+  //   }
+  // },
 };
 </script>
 
