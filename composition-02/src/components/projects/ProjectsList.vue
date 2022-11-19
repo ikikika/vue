@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 
 import ProjectItem from './ProjectItem.vue';
 
@@ -37,6 +37,14 @@ export default {
 
     const hasProjects = computed(function () {
       return props.user.projects && availableProjects.value.length > 0;
+    });
+
+    watch(enteredSearchTerm, function (newValue) {
+      setTimeout(() => {
+        if (newValue === enteredSearchTerm.value) {
+          activeSearchTerm.value = newValue;
+        }
+      }, 300);
     });
 
     function updateSearch(val) {
@@ -76,13 +84,13 @@ export default {
   //   },
   // },
   watch: {
-    enteredSearchTerm(val) {
-      setTimeout(() => {
-        if (val === this.enteredSearchTerm) {
-          this.activeSearchTerm = val;
-        }
-      }, 300);
-    },
+    // enteredSearchTerm(val) {
+    //   setTimeout(() => {
+    //     if (val === this.enteredSearchTerm) {
+    //       this.activeSearchTerm = val;
+    //     }
+    //   }, 300);
+    // },
     user() {
       this.enteredSearchTerm = '';
     },
