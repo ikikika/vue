@@ -39,10 +39,15 @@ export default {
       return props.user.projects && availableProjects.value.length > 0;
     });
 
+    function updateSearch(val) {
+      enteredSearchTerm.value = val;
+    }
+
     return {
       enteredSearchTerm,
       availableProjects,
-      hasProjects
+      hasProjects,
+      updateSearch
     };
 
   },
@@ -65,11 +70,11 @@ export default {
   //   return this.user.projects;
   // },
   // },
-  methods: {
-    updateSearch(val) {
-      this.enteredSearchTerm = val;
-    },
-  },
+  // methods: {
+  //   updateSearch(val) {
+  //     this.enteredSearchTerm = val;
+  //   },
+  // },
   watch: {
     enteredSearchTerm(val) {
       setTimeout(() => {
