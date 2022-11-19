@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 import ProjectItem from './ProjectItem.vue';
 
@@ -26,8 +26,18 @@ export default {
     const enteredSearchTerm = ref('');
     const activeSearchTerm = ref('');
 
+    const availableProjects = computed(function () {
+      if (activeSearchTerm.value) {
+        return props.user.projects.filter((prj) =>
+          prj.title.includes(activeSearchTerm.value)
+        );
+      }
+      return props.user.projects;
+    });
+
     return {
       enteredSearchTerm,
+      availableProjects
     };
 
   },
@@ -41,14 +51,14 @@ export default {
     hasProjects() {
       return this.user.projects && this.availableProjects.length > 0;
     },
-    availableProjects() {
-      if (this.activeSearchTerm) {
-        return this.user.projects.filter((prj) =>
-          prj.title.includes(this.activeSearchTerm)
-        );
-      }
-      return this.user.projects;
-    },
+    // availableProjects() {
+    //   if (this.activeSearchTerm) {
+    //     return this.user.projects.filter((prj) =>
+    //       prj.title.includes(this.activeSearchTerm)
+    //     );
+    //   }
+    //   return this.user.projects;
+    // },
   },
   methods: {
     updateSearch(val) {
