@@ -4,7 +4,16 @@
 </template>
 
 <script>
-import { computed, inject } from 'vue';
+import {
+    computed,
+    inject,
+    onBeforeMount,
+    onMounted,
+    onBeforeUpdate,
+    onUpdated,
+    onBeforeUnmount,
+    onUnmounted
+} from 'vue';
 
 export default {
     props: ['firstName', 'lastName'],
@@ -19,6 +28,29 @@ export default {
         // context.emit('save-data', 1); // this.emit('save-data', 1)
 
         const age = inject('userAge'); // dun change injected values here. only change them at the place where they are provided
+
+        onBeforeMount(function () {
+            console.log('onBeforeMount');
+            // before component mounted
+        });
+        onMounted(function () {
+            console.log('onMounted');
+            // component mounted
+        });
+        onBeforeUpdate(function () {
+            console.log('onBeforeUpdate');
+            // before copmponent updated
+        });
+        onUpdated(function () {
+            console.log('onUpdated');
+            // after component updated
+        });
+        onBeforeUnmount(function () {
+            console.log('onBeforeUnmount');
+        });
+        onUnmounted(function () {
+            console.log('onUnmounted');
+        });
 
         return { userName: uName, age }
     }
