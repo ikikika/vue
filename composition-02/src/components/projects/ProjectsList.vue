@@ -35,9 +35,14 @@ export default {
       return props.user.projects;
     });
 
+    const hasProjects = computed(function () {
+      return props.user.projects && availableProjects.value.length > 0;
+    });
+
     return {
       enteredSearchTerm,
-      availableProjects
+      availableProjects,
+      hasProjects
     };
 
   },
@@ -47,19 +52,19 @@ export default {
   //     activeSearchTerm: '',
   //   };
   // },
-  computed: {
-    hasProjects() {
-      return this.user.projects && this.availableProjects.length > 0;
-    },
-    // availableProjects() {
-    //   if (this.activeSearchTerm) {
-    //     return this.user.projects.filter((prj) =>
-    //       prj.title.includes(this.activeSearchTerm)
-    //     );
-    //   }
-    //   return this.user.projects;
-    // },
-  },
+  // computed: {
+  //   hasProjects() {
+  //     return this.user.projects && this.availableProjects.length > 0;
+  //   },
+  // availableProjects() {
+  //   if (this.activeSearchTerm) {
+  //     return this.user.projects.filter((prj) =>
+  //       prj.title.includes(this.activeSearchTerm)
+  //     );
+  //   }
+  //   return this.user.projects;
+  // },
+  // },
   methods: {
     updateSearch(val) {
       this.enteredSearchTerm = val;
