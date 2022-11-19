@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, toRefs } from 'vue';
 
 import ProjectItem from './ProjectItem.vue';
 
@@ -45,6 +45,15 @@ export default {
           activeSearchTerm.value = newValue;
         }
       }, 300);
+    });
+
+    // const propsWithRefs = toRefs(props);
+    // const user = propsWithRefs.user;
+
+    const { user } = toRefs(props);
+
+    watch(user, function () {
+      enteredSearchTerm.value = '';
     });
 
     function updateSearch(val) {
@@ -83,18 +92,18 @@ export default {
   //     this.enteredSearchTerm = val;
   //   },
   // },
-  watch: {
-    // enteredSearchTerm(val) {
-    //   setTimeout(() => {
-    //     if (val === this.enteredSearchTerm) {
-    //       this.activeSearchTerm = val;
-    //     }
-    //   }, 300);
-    // },
-    user() {
-      this.enteredSearchTerm = '';
-    },
-  },
+  // watch: {
+  // enteredSearchTerm(val) {
+  //   setTimeout(() => {
+  //     if (val === this.enteredSearchTerm) {
+  //       this.activeSearchTerm = val;
+  //     }
+  //   }, 300);
+  // },
+  // user() {
+  //   this.enteredSearchTerm = '';
+  // },
+  // },
 };
 </script>
 
