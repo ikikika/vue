@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import UserItem from './UserItem.vue';
 
 export default {
@@ -26,6 +26,18 @@ export default {
     const enteredSearchTerm = ref('');
     const activeSearchTerm = ref('');
 
+    const availableUsers = computed(function () {
+      let users = [];
+      if (activeSearchTerm.value) {
+        users = props.users.filter((usr) =>
+          usr.fullName.includes(activeSearchTerm.value)
+        );
+      } else if (props.users) {
+        users = props.users;
+      }
+      return users;
+    });
+
     const sorting = ref(null);
   },
   // data() {
@@ -36,17 +48,17 @@ export default {
   //   };
   // },
   computed: {
-    availableUsers() {
-      let users = [];
-      if (this.activeSearchTerm) {
-        users = this.users.filter((usr) =>
-          usr.fullName.includes(this.activeSearchTerm)
-        );
-      } else if (this.users) {
-        users = this.users;
-      }
-      return users;
-    },
+    // availableUsers() {
+    //   let users = [];
+    //   if (this.activeSearchTerm) {
+    //     users = this.users.filter((usr) =>
+    //       usr.fullName.includes(this.activeSearchTerm)
+    //     );
+    //   } else if (this.users) {
+    //     users = this.users;
+    //   }
+    //   return users;
+    // },
     displayedUsers() {
       if (!this.sorting) {
         return this.availableUsers;
