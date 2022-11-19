@@ -38,6 +38,10 @@ export default {
       return users;
     });
 
+    function updateSearch(val) {
+      enteredSearchTerm.value = val;
+    }
+
     const sorting = ref(null);
     const displayedUsers = computed(function () {
       if (!sorting.value) {
@@ -59,7 +63,8 @@ export default {
     return {
       enteredSearchTerm,
       displayedUsers,
-      sorting
+      sorting,
+      updateSearch
     };
   },
   // data() {
@@ -99,9 +104,9 @@ export default {
   // },
   // },
   methods: {
-    updateSearch(val) {
-      this.enteredSearchTerm = val;
-    },
+    // updateSearch(val) {
+    //   this.enteredSearchTerm = val;
+    // },
     sort(mode) {
       this.sorting = mode;
     },
