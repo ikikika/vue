@@ -19,7 +19,8 @@ export default {
   },
   data() {
     return {
-      alertIsVisible: false,
+      alertTitle: 'Delete User?',
+      alertIsVisible: true, // overwrites mixin!
     };
   },
   mixins: [alertMixin]
