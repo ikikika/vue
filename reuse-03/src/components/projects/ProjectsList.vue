@@ -29,6 +29,8 @@ export default {
     const projects = computed(function () {
       return user.value ? user.value.projects : [];
     });
+    // react to user changing and get projects whenever users change
+    // project is not a ref
 
     const { enteredSearchTerm, availableItems, updateSearch } = useSearch(
       projects,

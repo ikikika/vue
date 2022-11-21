@@ -10,6 +10,7 @@ export default function useSearch(items, searchProp) {
       filteredItems = items.value.filter((item) =>
         item[searchProp].includes(activeSearchTerm.value)
       );
+      // items is a ref
     } else if (items.value) {
       filteredItems = items.value;
     }

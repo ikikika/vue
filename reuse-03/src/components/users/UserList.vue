@@ -28,6 +28,7 @@ export default {
   setup(props) {
 
     const { users } = toRefs(props);
+    // convert users to refs
 
     const { enteredSearchTerm, availableItems, updateSearch } = useSearch(
       users,
