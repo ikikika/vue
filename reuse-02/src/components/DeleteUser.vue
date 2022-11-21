@@ -21,7 +21,7 @@ export default {
   setup() {
     const alertTitle = ref('Delete User?');
 
-    const [alertIsVisible, showAlert, hideAlert] = useAlert();
+    const [alertIsVisible, showAlert, hideAlert] = useAlert(true);
 
     return {
       alertIsVisible,
